@@ -1,0 +1,109 @@
+/* ThinkOrSwim Dark Theme Base */
+:root {
+  --bg-dark: #0A0A0A;
+  --bg-panel: #1A1A1A;
+  --text-main: #FFFFFF;
+  --text-muted: #888888;
+  --border-color: #333333;
+  --accent-cyan: #00FFFF;
+  --accent-magenta: #FF00FF;
+  --accent-green: #00FF00;
+  --accent-red: #FF0000;
+  --accent-yellow: #FFD700;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: var(--accent-cyan);
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: #2A2A2A;
+  color: var(--text-main);
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.btn-primary {
+  background-color: #2A2A2A;
+  color: var(--text-main);
+  border: 1px solid var(--accent-cyan);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-cyan);
+  color: var(--bg-dark);
+}
+
+.input-field {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}

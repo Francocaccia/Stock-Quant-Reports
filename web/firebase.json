@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "YOUR_FIREBASE_HOSTING_SITE_ID",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Editor backups / OS files
+*~
+.DS_Store
+Thumbs.db
+
+# Generated output
+charts/
+reports/
+
+# Dependencies and build artifacts
+node_modules/
+web/dist/
+.firebase/
+*.exe
+bin/
+*.zip
+*.log
