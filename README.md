@@ -8,7 +8,7 @@ This is an educational / portfolio project. **It is not investment advice.**
 
 ```
 React + Vite  --(Firebase Auth / Hosting)-->  Go API  -->  third-party market-data APIs
-   (web/)                                    (*.go)         (Tiingo, TwelveData, Stooq,
+   (web/)                                 (backend/)       (Tiingo, TwelveData, Stooq,
                                                              Yahoo Finance, Alpha Vantage)
                                                   |
                                                   v
@@ -17,7 +17,7 @@ React + Vite  --(Firebase Auth / Hosting)-->  Go API  -->  third-party market-da
 ```
 
 - **Frontend (`web/`)**: React + Vite single-page app. Sign-in with Google through Firebase Auth; hosted on Firebase Hosting.
-- **Backend (repo root)**: a single Go HTTP server that fetches data, computes indicators, draws charts, writes PDFs and stores results.
+- **Backend (`backend/`)**: a single Go HTTP server that fetches data, computes indicators, draws charts, writes PDFs and stores results.
 - **Database**: MongoDB (optional; without it the API still generates reports but keeps no history).
 
 ## Features
@@ -54,7 +54,7 @@ Requirements: Go 1.23+, Node 20+, and optionally MongoDB (local or Atlas).
 | `TWELVEDATA_API_KEY` | no | Twelve Data API key |
 | `ALPHAVANTAGE_API_KEY` | no | Alpha Vantage API key |
 
-Providers without a key are skipped; the keyless ones (Stooq, Yahoo Finance) may be rate-limited or blocked. See `.env.example`. The server reads the process environment directly (it does not load `.env` files), so export the variables in your shell.
+Providers without a key are skipped; the keyless ones (Stooq, Yahoo Finance) may be rate-limited or blocked. See `backend/.env.example`; copy it to `backend/.env` and fill in your keys. The server reads the process environment directly (it does not load `.env` files), so export the variables in your shell (for example `set -a; source .env; set +a`).
 
 ### Get the code
 
@@ -63,13 +63,31 @@ git clone https://github.com/Francocaccia/Stock-Quant-Reports.git
 cd Stock-Quant-Reports
 ```
 
+### Project structure
+
+```
+Stock-Quant-Reports/
+├── backend/          Go API (package main): data, indicators, charts, PDF, MongoDB
+│   ├── *.go
+│   ├── go.mod / go.sum
+│   ├── Dockerfile
+│   └── .env.example
+├── web/              React + Vite frontend (Firebase Auth / Hosting)
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
 ### Backend
 
 ```bash
 export MONGODB_URI=mongodb://localhost:27017   # optional
 export TIINGO_API_KEY=...                      # optional, any provider key
-go run .
+cd backend
+go run .                                       # or: go build
 ```
+
+Generated `charts/` and `reports/` are written relative to the working directory, so they end up in `backend/` (git-ignored).
 
 ### Frontend
 
@@ -90,7 +108,7 @@ The Firebase web config in `web/src/firebase.js` is public by design. To use you
 ### Docker
 
 ```bash
-docker build -t stock-quant-reports .
+docker build -t stock-quant-reports ./backend
 docker run -p 8080:8080 -e MONGODB_URI=... stock-quant-reports
 ```
 

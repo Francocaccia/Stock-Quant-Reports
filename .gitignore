@@ -1,4 +1,4 @@
-# Secrets
+# Secrets (any directory)
 .env
 .env.*
 !.env.example
@@ -8,15 +8,15 @@
 .DS_Store
 Thumbs.db
 
-# Generated output
-charts/
-reports/
+# Backend generated output
+backend/charts/
+backend/reports/
+backend/bin/
 
 # Dependencies and build artifacts
 node_modules/
 web/dist/
 .firebase/
 *.exe
-bin/
 *.zip
 *.log
